@@ -1,0 +1,39 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Virtual environment
+.venv/
+venv/
+env/
+
+# Environment secrets — NEVER commit real secrets
+.env
+
+# Database (contains scan results, not source code)
+*.db
+*.sqlite3
+
+# Python source tarball (downloaded, not code)
+Python-3.12.16.tar.xz
+Python-3.12.16/
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log

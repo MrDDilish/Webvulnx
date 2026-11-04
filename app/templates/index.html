@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WebVulnX | Security Assessment</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<header><div><span class="logo">WV</span><strong>WebVulnX</strong><small> Web Application VAPT Framework</small></div><span class="tag">AUTHORIZED TESTING ONLY</span></header>
+<main>
+<section class="hero"><div><p class="eyebrow">SECURITY ASSESSMENT PLATFORM</p><h1>Web application<br><span>security overview</span></h1><p class="muted">Discover security misconfigurations, review findings, and generate actionable remediation plans.</p></div></section>
+<section class="stats">
+<div class="stat"><small>Total findings</small><strong>{{ total }}</strong></div>
+{% for sev in ["Critical","High","Medium","Low","Info"] %}<div class="stat"><small>{{ sev }}</small><strong>{{ counts[sev] }}</strong></div>{% endfor %}
+</section>
+<section class="panel">
+<h2>Start a new assessment</h2>
+<p class="muted">Enter the target URL of the lab application you want to assess.</p>
+<form id="scanForm"><input id="target" type="url" placeholder="http://127.0.0.1:3000" required><button>Start scan</button></form>
+<p id="message" class="muted"></p>
+</section>
+<section class="panel">
+<h2>Recent assessments</h2>
+<table><thead><tr><th>Scan ID</th><th>Target</th><th>Status</th><th>Created</th><th>Findings</th></tr></thead>
+<tbody>{% for scan in scans %}<tr><td>{{ scan["id"] }}</td><td>{{ scan["target"] }}</td><td><span class="status">{{ scan["status"] }}</span></td><td>{{ scan["created_at"][:19] }}</td><td><a href="#" onclick="showFindings('{{ scan['id'] }}');return false;">View findings</a></td></tr>{% else %}<tr><td colspan="5">No assessments yet.</td></tr>{% endfor %}</tbody></table>
+</section>
+<section class="panel" id="findingsPanel" hidden><h2>Assessment findings</h2><div id="findings"></div></section>
+</main>
+<footer>WebVulnX · Local prototype · Use only with explicit authorization</footer>
+<script src="/static/app.js"></script>
+</body></html>
